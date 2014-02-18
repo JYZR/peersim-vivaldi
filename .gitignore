@@ -1,4 +1,3 @@
-*.pydevproject
 .metadata
 .gradle
 bin/
@@ -12,6 +11,9 @@ local.properties
 .loadpath
 .classpath
 .project
+
+# Node
+node_modules
 
 # External tool builders
 .externalToolBuilders/
