@@ -1,4 +1,6 @@
-package com.lajv.vivaldi;
+package com.lajv.vivaldi.dim2d;
+
+import com.lajv.vivaldi.VivaldiVector;
 
 import peersim.core.CommonState;
 

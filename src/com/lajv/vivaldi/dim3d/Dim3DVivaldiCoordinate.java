@@ -1,38 +1,48 @@
-package com.lajv.vivaldi;
+package com.lajv.vivaldi.dim3d;
+
+import com.lajv.vivaldi.VivaldiCoordinate;
+import com.lajv.vivaldi.VivaldiVector;
 
 /**
  * Class definining a syntethic two-dimensional coordinate for Vivaldi
  */
-public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
+public class Dim3DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 
 	/**
-	 * The X coordinate of this <code>Dim2DVivaldiCoordinate</code>.
+	 * The X coordinate of this <code>Dim3DVivaldiCoordinate</code>.
 	 */
 	public double x;
 
 	/**
-	 * The Y coordinate of this <code>Dim2DVivaldiCoordinate</code>.
+	 * The Y coordinate of this <code>Dim3DVivaldiCoordinate</code>.
 	 */
 	public double y;
 
 	/**
-	 * @see Dim2DVivaldiCoordinate#Dim2DVivaldiCoordinate()
+	 * The Y coordinate of this <code>Dim3DVivaldiCoordinate</code>.
 	 */
-	public Dim2DVivaldiCoordinate(String prefix) {
+	public double z;
+
+	/**
+	 * @see Dim3DVivaldiCoordinate#Dim3DVivaldiCoordinate()
+	 */
+	public Dim3DVivaldiCoordinate(String prefix) {
 		x = 0;
 		y = 0;
+		z = 0;
 	}
 
 	/**
-	 * Constructs and initializes a <code>Dim2DVivaldiCoordinate</code> with coordinates in origo.
+	 * Constructs and initializes a <code>Dim3DVivaldiCoordinate</code> with coordinates in origo.
 	 */
-	public Dim2DVivaldiCoordinate() {
+	public Dim3DVivaldiCoordinate() {
 		x = 0;
 		y = 0;
+		z = 0;
 	}
 
 	/**
-	 * Constructs and initializes a <code>Dim2DVivaldiCoordinate</code> with the specified
+	 * Constructs and initializes a <code>Dim3DVivaldiCoordinate</code> with the specified
 	 * coordinates.
 	 * 
 	 * @param x
@@ -40,34 +50,38 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 	 * @param y
 	 *            the Y coordinate of the newly constructed <code>VivaldiCoordinate</code>
 	 */
-	public Dim2DVivaldiCoordinate(double x, double y) {
+	public Dim3DVivaldiCoordinate(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
+		this.z = z;
 	}
 
-	public void setLocation(double x, double y) {
+	public void setLocation(double x, double y, double z) {
 		this.x = x;
 		this.y = y;
+		this.z = z;
 	}
 
 	/**
 	 * @see VivaldiCoordinate#distance(VivaldiCoordinate)
 	 */
 	public double distance(VivaldiCoordinate pt) {
-		Dim2DVivaldiCoordinate other = (Dim2DVivaldiCoordinate) pt;
+		Dim3DVivaldiCoordinate other = (Dim3DVivaldiCoordinate) pt;
 		double px = other.x - x;
 		double py = other.y - y;
-		return Math.sqrt(px * px + py * py);
+		double pz = other.z - z;
+		return Math.pow(px * px + py * py + pz * pz, 1 / 3);
 	}
 
 	/**
 	 * @see VivaldiCoordinate#differenceVector(VivaldiCoordinate)
 	 */
 	public VivaldiVector differenceVector(VivaldiCoordinate other) {
-		Dim2DVivaldiCoordinate o = (Dim2DVivaldiCoordinate) other;
+		Dim3DVivaldiCoordinate o = (Dim3DVivaldiCoordinate) other;
 		double vx = x - o.x;
 		double vy = y - o.y;
-		return new Dim2DVivaldiVector(vx, vy);
+		double vz = z - o.z;
+		return new Dim3DVivaldiVector(vx, vy, vz);
 	}
 
 	/**
@@ -75,9 +89,10 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 	 */
 	public void applyForceVector(VivaldiVector vector, double correction_factor,
 			double uncertainty_balance) {
-		Dim2DVivaldiVector v = (Dim2DVivaldiVector) vector;
+		Dim3DVivaldiVector v = (Dim3DVivaldiVector) vector;
 		x += v.x * correction_factor * uncertainty_balance;
 		y += v.y * correction_factor * uncertainty_balance;
+		z += v.z * correction_factor * uncertainty_balance;
 	}
 
 	/**
@@ -99,7 +114,7 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 	 * @return a string representation of this <code>VivaldiCoordinate</code>.
 	 */
 	public String toString() {
-		return "VivaldiCoordinate[" + x + ", " + y + "]";
+		return "VivaldiCoordinate[" + x + ", " + y + ", " + z + "]";
 	}
 
 }

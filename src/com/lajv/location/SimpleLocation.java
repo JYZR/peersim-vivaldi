@@ -6,8 +6,7 @@ public class SimpleLocation implements Location, Cloneable {
 
 	double x;
 	double y;
-	
-	
+
 	public SimpleLocation(String prefix) {
 	}
 
