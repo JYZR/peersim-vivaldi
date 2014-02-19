@@ -36,7 +36,6 @@ public class VivaldiProtocol implements CDProtocol {
 	// =========================== Fields =================================
 	// ====================================================================
 
-	protected Location location;
 	protected VivaldiCoordinate vivCoord;
 	protected double uncertainty;
 

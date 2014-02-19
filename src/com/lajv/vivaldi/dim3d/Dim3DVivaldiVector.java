@@ -59,6 +59,6 @@ public class Dim3DVivaldiVector implements VivaldiVector {
 	 * @see VivaldiVector#length()
 	 */
 	public double length() {
-		return Math.pow(x * x + y * y + z * z, 1 / 3);
+		return Math.sqrt(x * x + y * y + z * z);
 	}
 }

@@ -32,6 +32,8 @@ public class Dim2DHeightVivaldiVector implements VivaldiVector {
 	 * @see VivaldiVector#normalize()
 	 */
 	public void normalize() {
+		if (h > Math.sqrt(x * x + y * y))
+			h = Math.sqrt(x * x + y * y);
 		double length = length();
 		// Nodes start at origo and thus the length could be 0, in this case a random vector is
 		// generated.
@@ -59,6 +61,6 @@ public class Dim2DHeightVivaldiVector implements VivaldiVector {
 	 * @see VivaldiVector#length()
 	 */
 	public double length() {
-		return Math.sqrt(x * x + y * y) + Math.abs(h);
+		return Math.sqrt(x * x + y * y) + h;
 	}
 }

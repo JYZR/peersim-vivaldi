@@ -70,7 +70,7 @@ public class Dim3DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 		double px = other.x - x;
 		double py = other.y - y;
 		double pz = other.z - z;
-		return Math.pow(px * px + py * py + pz * pz, 1 / 3);
+		return Math.sqrt(px * px + py * py + pz * pz);
 	}
 
 	/**

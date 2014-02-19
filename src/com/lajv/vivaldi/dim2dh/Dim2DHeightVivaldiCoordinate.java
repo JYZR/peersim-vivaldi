@@ -68,11 +68,8 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 	/**
 	 * @see VivaldiCoordinate#distance(VivaldiCoordinate)
 	 */
-	public double distance(VivaldiCoordinate pt) {
-		Dim2DHeightVivaldiCoordinate other = (Dim2DHeightVivaldiCoordinate) pt;
-		double px = other.x - x;
-		double py = other.y - y;
-		return Math.sqrt(px * px + py * py);
+	public double distance(VivaldiCoordinate other) {
+		return differenceVector(other).length();
 	}
 
 	/**
@@ -82,7 +79,7 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 		Dim2DHeightVivaldiCoordinate o = (Dim2DHeightVivaldiCoordinate) other;
 		double vx = x - o.x;
 		double vy = y - o.y;
-		double vh = h - o.h;
+		double vh = h + o.h;
 		return new Dim2DHeightVivaldiVector(vx, vy, vh);
 	}
 
@@ -95,7 +92,8 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 		x += v.x * correction_factor * uncertainty_balance;
 		y += v.y * correction_factor * uncertainty_balance;
 		h += v.h * correction_factor * uncertainty_balance;
-		// if (h < 0) h = 0;
+		if (h < 0)
+			h = 0;
 	}
 
 	/**
