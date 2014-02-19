@@ -16,7 +16,9 @@ gulp.task('default', function() {
     var input_arg = 'vivaldi.conf';
 
     // Execute Java command
-    var proc = exec('java' + [cp_arg, class_arg, input_arg].join(' '), function(error, stdout, stderr) {
+    var proc = exec('java' + [cp_arg, class_arg, input_arg].join(' '), {
+        maxBuffer: 1024 * 1024
+    }, function(error, stdout, stderr) {
         if (error !== null) {
             print.stderr('exec error: ' + error);
         }

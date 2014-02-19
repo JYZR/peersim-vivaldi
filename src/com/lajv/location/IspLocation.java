@@ -38,7 +38,7 @@ public class IspLocation implements Location {
 
 	public IspLocation(String prefix) {
 		this.prefix = prefix;
-		num_isps = Configuration.getInt(prefix + "." + PAR_NUM_ISPS);
+		num_isps = Configuration.getInt(prefix + "." + PAR_NUM_ISPS, 1);
 		latency_factor = Configuration.getInt(prefix + "." + PAR_LAT_FAC, 50);
 		isp_latency = Configuration.getInt(prefix + "." + PAR_ISP_LAT, 50);
 	}

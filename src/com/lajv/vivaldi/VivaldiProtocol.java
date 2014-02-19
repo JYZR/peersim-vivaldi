@@ -1,7 +1,6 @@
 package com.lajv.vivaldi;
 
 import com.lajv.NetworkNode;
-import com.lajv.location.Location;
 
 import peersim.cdsim.CDProtocol;
 import peersim.config.Configuration;
