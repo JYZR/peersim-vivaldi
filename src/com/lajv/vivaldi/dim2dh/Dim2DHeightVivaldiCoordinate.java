@@ -115,7 +115,7 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 	 * @return a string representation of this <code>VivaldiCoordinate</code>.
 	 */
 	public String toString() {
-		return "VivaldiCoordinate[" + x + ", " + y + ", " + h + "]";
+		return x + "," + y + "," + h;
 	}
 
 }

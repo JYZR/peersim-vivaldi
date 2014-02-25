@@ -44,6 +44,9 @@ public class VivaldiProtocol implements CDProtocol {
 	public static double uncertainty_factor;
 	public static final double default_uncertainty_factor = 1;
 
+	public double last_uncertainty_balance;
+	public double last_move_distance;
+
 	// ==================== Constructor ===================================
 	// ====================================================================
 
@@ -152,6 +155,9 @@ public class VivaldiProtocol implements CDProtocol {
 
 		vivCoord.applyForceVector(vector, correction_factor, uncertainty_balance);
 
+		last_uncertainty_balance = uncertainty_balance;
+		vector.applyError(correction_factor * uncertainty_balance);
+		last_move_distance = vector.length();
 	}
 
 	@Override

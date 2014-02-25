@@ -102,7 +102,7 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 	 * @return a string representation of this <code>VivaldiCoordinate</code>.
 	 */
 	public String toString() {
-		return "VivaldiCoordinate[" + x + ", " + y + "]";
+		return x + "," + y;
 	}
 
 }

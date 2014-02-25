@@ -29,10 +29,10 @@ public class IspLocation implements Location {
 
 	double x;
 	double y;
-	int isp;
+	public int isp;
 	String prefix;
 
-	static int num_isps;
+	public static int num_isps;
 	static int latency_factor;
 	static int isp_latency;
 
@@ -63,7 +63,7 @@ public class IspLocation implements Location {
 		} else {
 			double latency = Math.sqrt(x * x + y * y);
 			latency += Math.sqrt(other.x * other.x + other.y * other.y);
-			return latency + isp_latency;
+			return latency + isp_latency * (isp + other.isp) / num_isps;
 		}
 	}
 

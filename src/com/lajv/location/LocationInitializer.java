@@ -3,11 +3,12 @@ package com.lajv.location;
 import com.lajv.NetworkNode;
 
 import peersim.core.*;
+import peersim.dynamics.NodeInitializer;
 
 /**
  * Initializes the network with network coordinates
  */
-public class LocationInitializer implements Control {
+public class LocationInitializer implements NodeInitializer, Control {
 
 	// --------------------------------------------------------------------------
 	// Parameters
@@ -56,8 +57,8 @@ public class LocationInitializer implements Control {
 	// private final int y_max;
 	// private final int y_min;
 
-//	/** Protocol identifier */
-//	private final int pid;
+	// /** Protocol identifier */
+	// private final int pid;
 
 	// --------------------------------------------------------------------------
 	// Initialization
@@ -91,10 +92,16 @@ public class LocationInitializer implements Control {
 	public boolean execute() {
 
 		for (int i = 0; i < Network.size(); i++) {
-			NetworkNode netNode = (NetworkNode) Network.get(i);
-			netNode.location.randomize();
+			initialize(Network.get(i));
 		}
-
 		return false;
+	}
+	
+	/**
+	 * @see peersim.dynamics.NodeInitializer#initialize(peersim.core.Node)
+	 */
+	public void initialize(Node n) {
+		NetworkNode netNode = (NetworkNode) n;
+		netNode.location.randomize();
 	}
 }
