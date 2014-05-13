@@ -1,5 +1,7 @@
 package com.lajv.vivaldi.dim2dh;
 
+import java.text.DecimalFormat;
+
 import com.lajv.vivaldi.VivaldiCoordinate;
 import com.lajv.vivaldi.VivaldiVector;
 
@@ -115,7 +117,8 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 	 * @return a string representation of this <code>VivaldiCoordinate</code>.
 	 */
 	public String toString() {
-		return x + "," + y + "," + h;
+		DecimalFormat df = new DecimalFormat("0.00");
+		return "{x: " + df.format(x) + ", y: " + df.format(y) + ", z: " + df.format(h) + "}";
 	}
 
 	/**
