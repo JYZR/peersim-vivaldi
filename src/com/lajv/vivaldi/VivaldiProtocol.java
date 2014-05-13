@@ -172,4 +172,8 @@ public class VivaldiProtocol implements CDProtocol {
 		return vp;
 	}
 
+	public VivaldiCoordinate getCoord() {
+		return vivCoord;
+	}
+
 }
