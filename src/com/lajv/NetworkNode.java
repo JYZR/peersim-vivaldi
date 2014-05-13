@@ -11,7 +11,7 @@ public class NetworkNode extends GeneralNode {
 
 	public NetworkNode(String prefix) {
 		super(prefix);
-		location = (Location) Configuration.getInstance(prefix + "." + "loc_impl"); 
+		location = (Location) Configuration.getInstance(prefix + "." + "loc_impl");
 	}
 
 	@Override
