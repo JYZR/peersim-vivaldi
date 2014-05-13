@@ -81,6 +81,9 @@ public class VivaldiProtocol implements CDProtocol {
 		// Get the overlay protocol which has the peer connection
 		int linkableID = FastConfig.getLinkable(protocolID);
 		Linkable linkable = (Linkable) netNode.getProtocol(linkableID);
+		
+		if (linkable.degree() == 0)
+			return;
 
 		// Choose a random peer
 		int i = CommonState.r.nextInt(linkable.degree());
