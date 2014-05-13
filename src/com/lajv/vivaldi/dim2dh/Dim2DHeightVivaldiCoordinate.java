@@ -2,7 +2,6 @@ package com.lajv.vivaldi.dim2dh;
 
 import com.lajv.vivaldi.VivaldiCoordinate;
 import com.lajv.vivaldi.VivaldiVector;
-import com.lajv.vivaldi.dim2d.Dim2DVivaldiCoordinate;
 
 /**
  * Class definining a syntethic two-dimensional coordinate for Vivaldi
