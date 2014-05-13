@@ -2,6 +2,7 @@ package com.lajv.vivaldi.dim2dh;
 
 import com.lajv.vivaldi.VivaldiCoordinate;
 import com.lajv.vivaldi.VivaldiVector;
+import com.lajv.vivaldi.dim2d.Dim2DVivaldiCoordinate;
 
 /**
  * Class definining a syntethic two-dimensional coordinate for Vivaldi
@@ -118,4 +119,14 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 		return x + "," + y + "," + h;
 	}
 
+	/**
+	 * @see VivaldiCoordinate#update()
+	 */
+	@Override
+	public void update(VivaldiCoordinate other) {
+		Dim2DHeightVivaldiCoordinate o = (Dim2DHeightVivaldiCoordinate) other;
+		x = o.x;
+		y = o.y;
+		h = o.h;
+	}
 }

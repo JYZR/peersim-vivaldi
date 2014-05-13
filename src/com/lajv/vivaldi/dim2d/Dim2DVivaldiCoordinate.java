@@ -105,4 +105,13 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 		return x + "," + y;
 	}
 
+	/**
+	 * @see VivaldiCoordinate#update()
+	 */
+	@Override
+	public void update(VivaldiCoordinate other) {
+		Dim2DVivaldiCoordinate o = (Dim2DVivaldiCoordinate) other;
+		x = o.x;
+		y = o.y;
+	}
 }

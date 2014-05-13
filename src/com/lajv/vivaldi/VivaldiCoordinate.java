@@ -46,4 +46,13 @@ public interface VivaldiCoordinate extends Cloneable {
 	 */
 	public Object clone();
 
+	/**
+	 * Updates this <code>VivaldiCoordinate</code> to be equal to the specified
+	 * <code>VivaldiCoordinate</code>.
+	 * 
+	 * @param coord
+	 *            the specified coordinate from which values will be copied
+	 */
+	public void update(VivaldiCoordinate other);
+
 }
