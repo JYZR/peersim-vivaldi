@@ -32,4 +32,9 @@ public class SimpleLocation implements Location, Cloneable {
 		}
 		return clone;
 	}
+
+	@Override
+	public double getUploadCapacity() {
+		return 0;
+	}
 }

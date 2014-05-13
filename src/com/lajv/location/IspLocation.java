@@ -31,6 +31,7 @@ public class IspLocation implements Location {
 	double y;
 	public int isp;
 	String prefix;
+	double uploadCapacity;
 
 	public static int num_isps;
 	static int latency_factor;
@@ -52,6 +53,7 @@ public class IspLocation implements Location {
 		x = CommonState.r.nextDouble() * CommonState.r.nextDouble() * CommonState.r.nextDouble();
 		y = CommonState.r.nextDouble() * CommonState.r.nextDouble() * CommonState.r.nextDouble();
 		isp = Math.min(CommonState.r.nextInt(num_isps), CommonState.r.nextInt(num_isps));
+		uploadCapacity = (1 - x * y) * CommonState.r.nextDouble() * 10;
 	}
 
 	public double latency(Location otherLocation) {
@@ -75,5 +77,9 @@ public class IspLocation implements Location {
 			// Never happens
 		}
 		return clone;
+	}
+
+	public double getUploadCapacity() {
+		return uploadCapacity;
 	}
 }

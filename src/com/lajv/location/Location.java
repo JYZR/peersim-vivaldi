@@ -7,4 +7,6 @@ public interface Location extends Cloneable {
 	public double latency(Location location);
 
 	public Object clone();
+
+	public double getUploadCapacity();
 }
