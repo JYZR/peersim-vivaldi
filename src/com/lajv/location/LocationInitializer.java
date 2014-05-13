@@ -60,6 +60,8 @@ public class LocationInitializer implements NodeInitializer, Control {
 	// /** Protocol identifier */
 	// private final int pid;
 
+	private String prefix;
+
 	// --------------------------------------------------------------------------
 	// Initialization
 	// --------------------------------------------------------------------------
@@ -72,6 +74,7 @@ public class LocationInitializer implements NodeInitializer, Control {
 	 *            the configuration prefix for this class
 	 */
 	public LocationInitializer(String prefix) {
+		this.prefix = prefix;
 
 		// x_max = Configuration.getInt(prefix + "." + PAR_X_MAX);
 		// x_min = Configuration.getInt(prefix + "." + PAR_X_MIN, -x_max);
@@ -91,12 +94,22 @@ public class LocationInitializer implements NodeInitializer, Control {
 	 */
 	public boolean execute() {
 
+		int numOfDistances = 0;
+		double sumOfDistances = 0;
 		for (int i = 0; i < Network.size(); i++) {
-			initialize(Network.get(i));
+			NetworkNode node = (NetworkNode) Network.get(i);
+			initialize(node);
+			for (int j = i - 1; j >= 0; j--) {
+				NetworkNode otherNode = (NetworkNode) Network.get(j);
+				sumOfDistances += node.location.latency(otherNode.location);
+				numOfDistances++;
+			}
 		}
+		double avgDistance = sumOfDistances / numOfDistances;
+		System.out.println(prefix + " : Average distance between nodes: " + avgDistance);
 		return false;
 	}
-	
+
 	/**
 	 * @see peersim.dynamics.NodeInitializer#initialize(peersim.core.Node)
 	 */
