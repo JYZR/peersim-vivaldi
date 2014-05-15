@@ -118,7 +118,7 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 	 */
 	public String toString() {
 		DecimalFormat df = new DecimalFormat("0.00");
-		return "{x: " + df.format(x) + ", y: " + df.format(y) + ", z: " + df.format(h) + "}";
+		return "{x: " + df.format(x) + ", y: " + df.format(y) + ", h: " + df.format(h) + "}";
 	}
 
 	/**
@@ -130,5 +130,10 @@ public class Dim2DHeightVivaldiCoordinate implements Cloneable, VivaldiCoordinat
 		x = o.x;
 		y = o.y;
 		h = o.h;
+	}
+
+	@Override
+	public String toCSV() {
+		return x + ", " + y + ", " + h;
 	}
 }

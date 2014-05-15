@@ -55,4 +55,6 @@ public interface VivaldiCoordinate extends Cloneable {
 	 */
 	public void update(VivaldiCoordinate other);
 
+	public String toCSV();
+
 }

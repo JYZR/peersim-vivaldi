@@ -1,5 +1,7 @@
 package com.lajv.vivaldi.dim2d;
 
+import java.text.DecimalFormat;
+
 import com.lajv.vivaldi.VivaldiCoordinate;
 import com.lajv.vivaldi.VivaldiVector;
 
@@ -102,7 +104,8 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 	 * @return a string representation of this <code>VivaldiCoordinate</code>.
 	 */
 	public String toString() {
-		return x + "," + y;
+		DecimalFormat df = new DecimalFormat("0.00");
+		return "{x: " + df.format(x) + ", y: " + df.format(y) + "}";
 	}
 
 	/**
@@ -113,5 +116,10 @@ public class Dim2DVivaldiCoordinate implements Cloneable, VivaldiCoordinate {
 		Dim2DVivaldiCoordinate o = (Dim2DVivaldiCoordinate) other;
 		x = o.x;
 		y = o.y;
+	}
+
+	@Override
+	public String toCSV() {
+		return x + "," + y;
 	}
 }

@@ -52,7 +52,6 @@ public class VivaldiObserver implements Control {
 	 */
 	private static final String PAR_META_FILE_PREFIX = "meta_file_prefix";
 	private static final String meta_file_prefix_default = "./vivaldi-tmp/meta";
-	
 
 	// =========================== Fields =================================
 	// ====================================================================
@@ -122,7 +121,7 @@ public class VivaldiObserver implements Control {
 			for (int i = 0; i < Network.size(); i++) {
 				NetworkNode n1 = (NetworkNode) Network.get(i);
 				VivaldiProtocol vp1 = (VivaldiProtocol) n1.getProtocol(pid);
-				ps.println(vp1.vivCoord + "," + ((IspLocation) n1.location).isp);
+				ps.println(vp1.vivCoord.toCSV() + "," + ((IspLocation) n1.location).isp);
 				for (int j = i + 1; j < Network.size(); j++) {
 					NetworkNode n2 = (NetworkNode) Network.get(j);
 					VivaldiProtocol vp2 = (VivaldiProtocol) n2.getProtocol(pid);
