@@ -1,6 +1,7 @@
 package com.lajv.vivaldi;
 
 import com.lajv.NetworkNode;
+import com.lajv.cyclon.CyclonProtocol;
 
 import peersim.cdsim.CDProtocol;
 import peersim.config.Configuration;
@@ -30,13 +31,26 @@ public class VivaldiProtocol implements CDProtocol {
 	 */
 	private static final String PAR_UNCERTAINTY_FACTOR = "uncertainty_factor";
 
+	/**
+	 * Parameter which specifies the implementation of <code>VivaldiCoordinate</code> to use.
+	 * 
+	 * @config
+	 */
 	private static final String PAR_COORD_IMPL = "coord_impl";
+
+	/**
+	 * Parameter which specifies the <code>CyclonProtocol</code> where coordinates should be updated
+	 * after a Vivaldi cycle.
+	 * 
+	 * @config
+	 */
+	private static final String PAR_CYCLON_PROT = "cyclon_prot";
 
 	// =========================== Fields =================================
 	// ====================================================================
 
-	protected VivaldiCoordinate vivCoord;
-	protected double uncertainty;
+	public VivaldiCoordinate vivCoord;
+	public double uncertainty;
 
 	public static double correction_factor;
 	public static final double default_correction_factor = 0.25;
@@ -46,6 +60,8 @@ public class VivaldiProtocol implements CDProtocol {
 
 	public double last_uncertainty_balance;
 	public double last_move_distance;
+
+	private int cyclonPid;
 
 	// ==================== Constructor ===================================
 	// ====================================================================
@@ -67,6 +83,8 @@ public class VivaldiProtocol implements CDProtocol {
 			System.err.println("Bad uncertainty_factor, setting it to default.");
 			uncertainty_factor = default_uncertainty_factor;
 		}
+
+		cyclonPid = Configuration.getPid(prefix + "." + PAR_CYCLON_PROT);
 	}
 
 	// ====================== Methods =====================================
@@ -81,7 +99,7 @@ public class VivaldiProtocol implements CDProtocol {
 		// Get the overlay protocol which has the peer connection
 		int linkableID = FastConfig.getLinkable(protocolID);
 		Linkable linkable = (Linkable) netNode.getProtocol(linkableID);
-		
+
 		if (linkable.degree() == 0)
 			return;
 
@@ -161,6 +179,12 @@ public class VivaldiProtocol implements CDProtocol {
 		last_uncertainty_balance = uncertainty_balance;
 		vector.applyError(correction_factor * uncertainty_balance);
 		last_move_distance = vector.length();
+
+		/*
+		 * Update the cyclon protocol with the received coordinate
+		 */
+		CyclonProtocol cycProt = (CyclonProtocol) node.getProtocol(cyclonPid);
+		cycProt.updateCoord(nbNode, nbProt.vivCoord);
 	}
 
 	@Override
