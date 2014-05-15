@@ -5,7 +5,7 @@ import com.lajv.location.Location;
 import peersim.config.Configuration;
 import peersim.core.GeneralNode;
 
-public class NetworkNode extends GeneralNode {
+public class NetworkNode extends GeneralNode implements Comparable<NetworkNode> {
 
 	public Location location;
 
@@ -19,5 +19,10 @@ public class NetworkNode extends GeneralNode {
 		NetworkNode clone = (NetworkNode) super.clone();
 		clone.location = (Location) location.clone();
 		return clone;
+	}
+
+	@Override
+	public int compareTo(NetworkNode o) {
+		return (int) (getID() - o.getID());
 	}
 }
