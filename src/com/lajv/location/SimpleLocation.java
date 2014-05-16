@@ -6,6 +6,7 @@ public class SimpleLocation implements Location, Cloneable {
 
 	double x;
 	double y;
+	double uploadCapacity;
 
 	public SimpleLocation(String prefix) {
 	}
@@ -14,6 +15,7 @@ public class SimpleLocation implements Location, Cloneable {
 	public void randomize() {
 		x = CommonState.r.nextDouble();
 		y = CommonState.r.nextDouble();
+		uploadCapacity = CommonState.r.nextDouble() * 10;
 	}
 
 	public double latency(Location otherLocation) {
@@ -35,6 +37,6 @@ public class SimpleLocation implements Location, Cloneable {
 
 	@Override
 	public double getUploadCapacity() {
-		return 0;
+		return uploadCapacity;
 	}
 }
