@@ -15,7 +15,7 @@ public class SimpleLocation implements Location, Cloneable {
 	public void randomize() {
 		x = CommonState.r.nextDouble();
 		y = CommonState.r.nextDouble();
-		uploadCapacity = CommonState.r.nextDouble() * 10;
+		uploadCapacity = 0.5 + CommonState.r.nextDouble() * 4.5; // Random value between 0.5 and 5.0
 	}
 
 	public double latency(Location otherLocation) {

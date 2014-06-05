@@ -53,7 +53,7 @@ public class IspLocation implements Location {
 		x = CommonState.r.nextDouble() * CommonState.r.nextDouble() * CommonState.r.nextDouble();
 		y = CommonState.r.nextDouble() * CommonState.r.nextDouble() * CommonState.r.nextDouble();
 		isp = Math.min(CommonState.r.nextInt(num_isps), CommonState.r.nextInt(num_isps));
-		uploadCapacity = (1 - x * y) * CommonState.r.nextDouble() * 10;
+		uploadCapacity = 0.5 + (1 - x * y) * CommonState.r.nextDouble() * 4.5;
 	}
 
 	public double latency(Location otherLocation) {
